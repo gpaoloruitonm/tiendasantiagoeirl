@@ -64,7 +64,7 @@ $noRepetirFechas = array_unique($arrayFechas);
     xkey: 'y',
     ykeys: ['ventas'],
     labels: ['ventas'],
-    lineColors: ['#8FCBE0', '#3c8dbc'],
+    lineColors: ['#8FCBE0', '#0e6edf'],
     hideHover: 'auto',
     preUnits: 'S/ ',
     parseTime: false,

@@ -542,7 +542,7 @@ use Controladores\ControladorSunat;
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#0e6edf; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -707,7 +707,7 @@ use Controladores\ControladorSunat;
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#0e6edf; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
