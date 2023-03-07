@@ -4,7 +4,7 @@ class Paginacion{
  public function paginarClientes($reload, $page, $tpages, $adjacents) {
 	$prevlabel = "&lsaquo;";
 	$nextlabel = "&rsaquo;";
-	$out = '<ul class="pagination ">';
+	$out = '<ul class="pagination">';
 	
 	// previous label
 
@@ -19,7 +19,7 @@ class Paginacion{
 	
 	// first label
 	if($page>($adjacents+1)) {
-		$out.= "<li><a href='javascript:void(0);' onclick='loadClientes(1)'>1</a></li>";
+		$out.= "<li style='background-color: #0e6edf'><a href='javascript:void(0);' onclick='loadClientes(1)' >1</a></li>";
 	}
 	// interval
 	if($page>($adjacents+2)) {
@@ -34,7 +34,7 @@ class Paginacion{
 		if($i==$page) {
 			$out.= "<li class='active'><a>$i</a></li>";
 		}else if($i==1) {
-			$out.= "<li><a href='javascript:void(0);' onclick='loadClientes(1)'>$i</a></li>";
+			$out.= "<li><a href='javascript:void(0);' onclick='loadClientes(1)' style='background-color: #0e6edf'>$i</a></li>";
 		}else {
 			$out.= "<li><a href='javascript:void(0);' onclick='loadClientes(".$i.")'>$i</a></li>";
 		}

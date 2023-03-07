@@ -305,6 +305,7 @@ a:focus {
 }
 .main-header .logo .logo-lg {
   display: block;
+  background-color: #0e6edf;
 }
 .main-header .logo .logo-mini {
   display: none;

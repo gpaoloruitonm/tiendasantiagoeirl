@@ -9,12 +9,12 @@
  <header class="main-header cabecera-m">
 
    <!-- Logo -->
-   <a href="inicio" class="logo">
+   <a href="inicio" class="logo" style="background-color: #0e6edf;">
      <!-- mini logo for sidebar mini 50x50 pixels -->
      <!-- <span class="logo-mini"><b>B</b>MM</span> -->
      <span class="logo-mini"><img src="vistas/img/logo/<?php echo $emisor['logo'] ?>" alt="" width="50px"></span>
      <!-- logo for regular state and mobile devices -->
-     <span class="logo-lg"><b><?php echo $emisor['nombre_comercial'] ?></b></span>
+     <span class="logo-lg" style="background-color: #0e6edf;"><b><?php echo $emisor['nombre_comercial'] ?></b></span>
    </a>
    <!-- Header Navbar: style can be found in header.less -->
    <nav class="navbar navbar-static-top cabecera-m">

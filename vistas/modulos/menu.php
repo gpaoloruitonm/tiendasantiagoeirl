@@ -13,7 +13,7 @@
       </div>
       <div class=" info">
         <p><?php echo $_SESSION['nombre']; ?></p>
-        <a href="#" class="btn btn-primary btn-sm boton-user"><i class="fas fa-user icon-user"></i> <?php echo $_SESSION['perfil']; ?></a>
+        <a href="#" class="btn btn-primary btn-sm boton-user" style="background-color: #0e6edf;"><i class="fas fa-user icon-user"></i> <?php echo $_SESSION['perfil']; ?></a>
       </div>
     </div>
     <!-- search form -->
