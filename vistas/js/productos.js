@@ -88,7 +88,11 @@ $(".btn-nuevo-producto").on("click", function (e) {
 })
 //  GENERAR CÓDIGO DEL PRODUCTO
 $("#nuevaCategoria").change(function () {
-    let idCategoria = $(this).val();
+    let idCategoria = $(this).val()+100;
+    let fechaActual = obtenerFechaActualEnFormatoDeseado(); // Reemplaza con tu función para obtener la fecha actual en el formato deseado
+    let nuevaSerie = idCategoria + "-"+ fechaActual;
+    $("#nuevaSerie").val(nuevaSerie);
+
     let datos = new FormData();
     datos.append('idCategoria', idCategoria);
     $.ajax({
@@ -117,6 +121,16 @@ $("#nuevaCategoria").change(function () {
         }
     })
 })
+
+function obtenerFechaActualEnFormatoDeseado() {
+    let fechaActual = new Date();
+    let anio = fechaActual.getFullYear().toString().substr(-4);
+    // let mes = ("0" + (fechaActual.getMonth() + 1)).slice(-2);
+    // let dia = ("0" + fechaActual.getDate()).slice(-2);
+    return anio;
+    // + mes + dia;
+}
+
 // AGREGANDO PRECIO DE VENTA
 function changePrecios() {
     let precio_unitario = $("#nuevoPrecioUnitario").val();
@@ -534,3 +548,10 @@ $(document).on('click', '.btn-reponer-stock', function () {
 
 
 })
+
+
+//Limpiar inputs de modales de modulo de compras
+
+$('#modalAgregarProducto').on('hidden.bs.modal', function () {
+    $('#formProductos')[0].reset();
+  });

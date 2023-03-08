@@ -101,7 +101,7 @@ use Controladores\ControladorClientes;
     <!-- Modal content-->
     <div class="modal-content">
 
-      <form role="form" method="post" autocomplete="off">
+      <form role="form" method="post" id="formClientes" autocomplete="off">
 
         <!--=====================================
         CABEZA DEL MODAL

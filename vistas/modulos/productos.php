@@ -169,7 +169,7 @@ $empresa_igv = ControladorEmpresa::ctrEmisor();
                 <div class="col-md-4">
                   <div class="form-group">
 
-                    <input type="text" class="form-control" name="nuevaSerie" id="nuevaSerie" onkeyup="this.value=Numeros(this.value)" placeholder="Serie del producto" title="Serie del producto">
+                    <input type="text" class="form-control" name="nuevaSerie" id="nuevaSerie" placeholder="Serie del producto" title="Serie del producto" readonly required>
 
                   </div>
                 </div>
@@ -257,7 +257,31 @@ $empresa_igv = ControladorEmpresa::ctrEmisor();
                 <div class="col-md-6">
                   <div class="form-group">
 
-                    <input type="text" class="form-control" name="nuevoPrecioUnitario" id="nuevoPrecioUnitario" onkeyup="this.value=Numeros(this.value)" placeholder="Ingresar precio unitario" title="Precio unitario" step="any" required>
+                    <input type="text" class="form-control" name="nuevoPrecioUnitario" id="nuevoPrecioUnitario" maxlength="4" min="1" max="200" step="0.01" placeholder="Ingresar precio unitario" title="Precio unitario" oninput="validarPrecio(this);" required>
+                    <p id="maxMsg1" class="alert alert-danger" style="display:none;">El precio no debe ser mayor que 200 soles</p>
+                    <script>
+                      function validarPrecio(input) {
+                        // Obtener el valor del campo de entrada
+                        var precio = parseFloat(input.value);
+
+                        // Verificar si el valor es negativo
+                        if (precio < 0) {
+                          // Si es negativo, establecer el valor en uno
+                          input.value = "1";
+                        }
+                      }
+
+                      var preciounitario = document.getElementById('nuevoPrecioUnitario');
+                      var maxMsg1 = document.getElementById('maxMsg1');
+
+                      preciounitario.addEventListener('input', function(event) {
+                        if (preciounitario.value > 200) {
+                          maxMsg1.style.display = 'block';
+                        } else {
+                          maxMsg1.style.display = 'none';
+                        }
+                      });
+                    </script>
 
                   </div>
                 </div>
@@ -380,6 +404,18 @@ $empresa_igv = ControladorEmpresa::ctrEmisor();
                     <select class="form-control " name="editarCategoria" title="Categoría" readonly required>
 
                       <option value="" id="editarCategoria"></option>
+                      <!-- <option value="">Selecionar categoría</option> -->
+                      <?php
+                      $item = null;
+                      $valor = null;
+                      $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                      foreach ($categorias as $k => $value) :
+
+                        echo '<option value="' . $value['id'] . '">' . $value['categoria'] . '</option>';
+
+                      endforeach;
+                      ?>
+
 
                     </select>
                   </div>
@@ -392,11 +428,11 @@ $empresa_igv = ControladorEmpresa::ctrEmisor();
 
                   </div>
                 </div>
-                <!-- ENTRADA PARA DEL CÓDIGO -->
+                <!-- ENTRADA PARA LA SERIE -->
                 <div class="col-md-4">
                   <div class="form-group">
 
-                    <input type="text" class="form-control " name="editarSerie" id="editarSerie" onkeyup="this.value=Numeros(this.value)" title="Serie">
+                    <input type="text" class="form-control " name="editarSerie" id="editarSerie" title="Serie" REA>
 
                   </div>
                 </div>
@@ -564,7 +600,7 @@ $eliminarProducto->ctrEliminarProducto();
 <script>
   function Numeros(string) { //Solo numeros
     var out = '';
-    var filtro = '1234567890'; //Caracteres validos
+    var filtro = '1234567890.'; //Caracteres validos
 
     //Recorrer el texto y verificar si el caracter se encuentra en la lista de validos 
     for (var i = 0; i < string.length; i++)
