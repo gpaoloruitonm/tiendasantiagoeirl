@@ -237,7 +237,7 @@
             var isRTL = false,
                 valueOnFocus = getActiveBuffer().join(''),
                 $el, chromeValueOnInput,
-                skipKeyPressEvent = false, //Safari 5.1.x - modal dialog fires keypress twice workaround
+                skipKeyPressEvent = true, //Safari 5.1.x - modal dialog fires keypress twice workaround
                 skipInputEvent = false, //skip when triggered from within inputmask
                 ignorable = false;
 
@@ -914,7 +914,7 @@
 
             function keydownEvent(e) {
                 //Safari 5.1.x - modal dialog fires keypress twice workaround
-                skipKeyPressEvent = false;
+                skipKeyPressEvent = true;
                 var input = this, $input = $(input), k = e.keyCode, pos = caret(input);
 
                 //backspace, delete, and escape get special treatment
