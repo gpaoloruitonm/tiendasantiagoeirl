@@ -122,17 +122,17 @@ use Controladores\ControladorClientes;
         <div class="modal-body">
 
           <div class="box-body">
-
             <!-- ENTRADA PARA EL DNI -->
             <div class="form-group">
 
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+
                 <input type=" number" maxlength="9" class="form-control " name="nuevoDni" id="nuevoDni" placeholder="Ingresar DNI" title="DNI">
-                <div id="reloadC"></div>
-                <span class="input-group-addon btn buscarRucP"><i class="fa fa-search"></i></span>
+
                 <div class="resultadoCliente" idCliente=""><a href="#" class="btn-add"></a></div>
+
               </div>
 
             </div>
