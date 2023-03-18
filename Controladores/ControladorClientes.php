@@ -21,7 +21,6 @@ class ControladorClientes
     {
 
         if (isset($_POST['nuevoCliente'])) {
-
             if (
                 preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCliente"]) &&
                 preg_match('/^[0-9]+$/', $_POST["nuevoDni"]) &&
@@ -37,7 +36,7 @@ class ControladorClientes
                     echo "<script>
                 Swal.fire({
                     title: '¡El DNI ya está registrado para otro cliente!',
-                    text: '...',
+                    text: 'Verificar',
                     icon: 'error',
                     showCancelButton: false,
                     confirmButtonColor: '#3085d6',
@@ -55,7 +54,7 @@ class ControladorClientes
                     echo "<script>
                     Swal.fire({
                         title: '¡El RUC ya está registrado para otro cliente!',
-                        text: '...',
+                        text: 'Verificar',
                         icon: 'error',
                         showCancelButton: false,
                         confirmButtonColor: '#3085d6',
@@ -83,23 +82,38 @@ class ControladorClientes
 
                 if ($respuesta == 'ok') {
                     echo "<script>
-                Swal.fire({
-                    title: '¡El cliente ha sido guardado corréctamente!',
-                    text: '...',
-                    icon: 'success',
-                    showCancelButton: false,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Cerrar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        loadClientes(1);
+                    Swal.fire({
+                        title: '¡El cliente ha sido guardado corréctamente!',
+                        text: '...',
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Cerrar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            loadClientes(1);
+                        }
+                    })
+                    if(window.history.replaceState){
+                        window.history.replaceState(null,null, window.location.href);
                     }
-                })
-                if(window.history.replaceState){
-                    window.history.replaceState(null,null, window.location.href);
-                }
-                </script>";
+                    </script>";
+                } else {
+                    echo "<script>
+                            Swal.fire({
+                                title: '¡Los datos del cliente no deben estar vacios!',
+                                text: 'Corroborar',
+                                icon: 'error',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Cerrar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                window.location = 'clientes';
+                                }
+                            })</script>";
                 }
             }
         }
