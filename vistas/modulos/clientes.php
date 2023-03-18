@@ -129,7 +129,7 @@ use Controladores\ControladorClientes;
 
                 <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 
-                <input type=" number" maxlength="9" class="form-control " name="nuevoDni" id="nuevoDni" placeholder="Ingresar DNI" title="DNI">
+                <input type=" number" maxlength="9" class="form-control " name="nuevoDni" id="nuevoDni" placeholder="Ingresar DNI" title="DNI" required>
 
                 <div class="resultadoCliente" idCliente=""><a href="#" class="btn-add"></a></div>
 
@@ -143,7 +143,7 @@ use Controladores\ControladorClientes;
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="text" class="form-control" name="nuevoCliente" id="nuevoCliente" placeholder="Ingresar nombre" title="Nombre">
+                <input type="text" class="form-control" name="nuevoCliente" id="nuevoCliente" placeholder="Ingresar nombre" title="Nombre" required>
 
               </div>
 
@@ -179,7 +179,7 @@ use Controladores\ControladorClientes;
 
                 <span class="input-group-addon"><i class="fa fa-at"></i></span>
 
-                <input type="email" class="form-control " name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar email" title="Correo Electrónico">
+                <input type="email" class="form-control " name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar email" title="Correo Electrónico" required>
 
               </div>
 
@@ -191,7 +191,7 @@ use Controladores\ControladorClientes;
 
                 <span class="input-group-addon"><i class="fa fa-phone-alt"></i></span>
 
-                <input type="text" class="form-control" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" title="Teléfono" maxlength="9">
+                <input type="text" class="form-control" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" title="Teléfono" maxlength="9" required>
 
               </div>
 
@@ -203,7 +203,7 @@ use Controladores\ControladorClientes;
 
                 <span class="input-group-addon"><i class="fa fa-map-marker-alt"></i></span>
 
-                <input type="text" class="form-control " name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingresar dirección" title="Dirección">
+                <input type="text" class="form-control " name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingresar dirección" title="Dirección" required>
 
               </div>
 

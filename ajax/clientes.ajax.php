@@ -96,26 +96,10 @@ if (isset($_POST['rucCliente'])) {
 }
 
 // SI EXISTE EL  CLIENTE
-// if (isset($_POST['numDocumento'])) {
-//     $existeCliente = new AjaxClientes();
-//     //$existeCliente->numDocumento = $_POST['numDocumento'];
-//     $existeCliente->ajaxExisteCliente(trim($_POST['numDocumento']));
-// }
-
 if (isset($_POST['numDocumento'])) {
     $existeCliente = new AjaxClientes();
+    //$existeCliente->numDocumento = $_POST['numDocumento'];
     $existeCliente->ajaxExisteCliente(trim($_POST['numDocumento']));
-
-    // Obtener el resultado de la consulta a la base de datos
-    $clienteExiste = $existeCliente->getResultadoConsulta();
-
-    if ($clienteExiste) {
-        // Si el cliente ya existe, mostrar un mensaje de error al usuario
-        echo "El cliente con número de DNI " . $_POST['numDocumento'] . " ya está registrado.";
-    } else {
-        // Si el cliente no existe, continuar con el proceso de registro
-        // ...
-    }
 }
 
 // BUSCAR CLIENTE PARA COMPROBANTE

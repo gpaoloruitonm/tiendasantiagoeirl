@@ -93,12 +93,10 @@
                 <div class="box box-primary">
                   <div class="box-header with-border">
 
-                    <!-- <h3 class="box-title"><i class="fas fa-chart-line"></i> GRÁFICO DE VENTAS</h3> -->
-                    <h3 class="box-title">GRÁFICO DE VENTAS</h3>
+                    <h3 class="box-title"><a href="ventas">GRÁFICO DE VENTAS</a></h3>
 
                   </div>
                   <div class="box-body chart-responsive chart-responsive-ventas">
-                    <!-- <div class="chart" id="revenue-chart" style="height: 300px;"></div> -->
                   </div>
                   <!-- /.box-body -->
                 </div>
