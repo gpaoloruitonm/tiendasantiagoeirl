@@ -346,8 +346,8 @@ use Controladores\ControladorSunat;
                                       <div class="input-group">
                                         <span class="input-group-addon"><i class="fas fa-money-bill-wave"></i></span>
                                         <span class="input-group-addon">&nbsp;S/</i></span>
-                                        <input type="number" class="form-control" style="display: none" min="0" placeholder="0.00" id="descuentoGlobalP" name=" descuentoGlobalP" value="" placeholder="Ingrese descuento">
-                                        <input type="number" class="form-control" min="0" maxlength="3" placeholder="0.00" id="descuentoGlobal" name=" descuentoGlobal" value="" placeholder=" Ingrese descuento">
+                                        <input type="number" class="form-control" style="display: none" minlength="0" maxlength="3" min="0" max="3" placeholder="0.00" id="descuentoGlobalP" name=" descuentoGlobalP" value="" placeholder="Ingrese descuento">
+                                        <input type="number" class="form-control" minlength="0" maxlength="3" min="0" max="3" placeholder="0.00" id="descuentoGlobal" name=" descuentoGlobal" value="" placeholder=" Ingrese descuento">
                                       </div>
                                       <p id="maxMsg" class="alert alert-danger" style="display:none;">El descuento no puede ser mayor que el subtotal</p>
                                         <script>

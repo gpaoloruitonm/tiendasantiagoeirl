@@ -32,11 +32,11 @@ class AjaxCompras
 
         $respuesta = ControladorCompras::ctrLoadCarro(null);
     }
-    public $descuentoGlobal;
+    public $descuentoGlobalC;
     public function ajaxDescuentoGlobal()
     {
-        $descuentoGlobal = $this->descuentoGlobal;
-        $respuesta = ControladorCompras::ctrLoadCarro($descuentoGlobal);
+        $descuentoGlobalC = $this->descuentoGlobalC;
+        $respuesta = ControladorCompras::ctrLoadCarro($descuentoGlobalC);
     }
     //  ELIMINAR TODOS LOS ITEMS DEL CARRITO
     public $eliminarCarro;
@@ -183,7 +183,7 @@ if (isset($_POST['subtotal'])) {
 //DESCUENTO GLOBAL
 if (isset($_POST['descontarG'])) {
     $objDesc = new AjaxCompras();
-    $objDesc->descuentoGlobal = $_POST['descuentoGlobalC'];
+    $objDesc->descuentoGlobalC = $_POST['descuentoGlobalC'];
     $objDesc->ajaxDescuentoGlobal();
 }
 // ELIMINAR ITEM DEL CARRO

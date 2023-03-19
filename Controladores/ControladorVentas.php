@@ -236,25 +236,10 @@ class ControladorVentas
 			$op_exoneradas = $op_exoneradas;
 			$op_inafectas = $op_inafectas;
 			$igv = $op_gravadas * $emisor->igv_dos;
-			$descuentoGlobal = $descuentoGlobal;
+			$descuentoGlobal = $op_desc;
 			echo "<script>
 				$('#descuentoGlobalP').val('" . (round($desc_porcentaje * 100, 5)) . "');
 				</script>";
-		}
-		if ($datosCarrito['tipo_desc'] == '%' && $descuentoGlobalP > 0 &&  $op_gravadas > 0) {
-
-			$desc_porcentaje = $descuentoGlobalP / 100;
-			// $desc_factor =($desc_porcentaje * $sub_to);		
-			$opg = $op_gravadas * $desc_porcentaje;
-			$op_desc = $op_gravadas * $desc_porcentaje;
-			$op_gravadas =  $op_gravadas - $opg;
-			$op_exoneradas = $op_exoneradas;
-			$op_inafectas = $op_inafectas;
-			$igv = $op_gravadas * $emisor->igv_dos;
-			$descuentoGlobal = $op_desc;
-			echo "<script>
-		$('#descuentoGlobal').val('" . (round($desc_porcentaje * $op_gr, 2)) . "');
-		</script>";
 		}
 
 

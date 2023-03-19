@@ -81,7 +81,7 @@ class ControladorCompras
         $igv = 0;
         $subtotal = 0;
         $desc_items = 0;
-        $descuentoGlobal = 0;
+        $descuento_item_total = 0;
         $icbper = 0;
         foreach ($carritoC as $k => $v) {
             // if($datosCarrito['moneda'] == "USD"){
@@ -119,22 +119,24 @@ class ControladorCompras
                 $op_inafectas += $v['subtotal'];
             }
             $igv +=  $v['igv'];
-            $desc_items += $v['descuento_item'];
+            $descuento_item_total += $v['descuento_item'];
 
 
             $icbper += $v['icbper'];
         }
 
+        $descuentoGlobalC = $datosCarrito['descuentoG'];
+		$descuentoGlobalCP = $datosCarrito['descuentoGP'];
         //LOGICA IMPLEMENTADA------------- INICIO
-        if (is_numeric($descuentoGlobal) && $descuentoGlobal > 0) {
-            $descuento = number_format($descuentoGlobal, 2);
+        if (is_numeric($descuentoGlobalC) && $descuentoGlobalC > 0) {
+            $descuento = number_format($descuentoGlobalC, 2);
         } else {
-            $descuentoGlobal = 0;
+            $descuentoGlobalC = 0;
         }
 
-        if ($descuentoGlobal > $subtotal) {
+        if ($descuentoGlobalC > $subtotal) {
             // Establecer el descuento como el valor del subtotal
-            $descuentoGlobal = $subtotal;
+            $descuentoGlobalC = $subtotal;
 
             // Mostrar un mensaje de error al usuario con SweetAlert
 ?>
@@ -151,7 +153,7 @@ class ControladorCompras
 
         //LOGICA IMPLEMENTADA------------- FIN
 
-        $descuentototal = $descuentoGlobal + $desc_items;
+        $descuentototal = $descuentoGlobalC + $desc_items;
         $subTotal = $op_gravadas + $op_exoneradas + $op_inafectas;
         $total = $op_gravadas + $op_exoneradas + $op_inafectas + $igv + $icbper;
         echo "<script>
@@ -167,10 +169,10 @@ class ControladorCompras
             </script>";
     }
 
-    public static function ctrLoadCarro($descuentoGlobal)
+    public static function ctrLoadCarro($descuentoGlobalC)
     {
-        if (empty($descuentoGlobal)) {
-            $descuentoGlobal = 0;
+        if (empty($descuentoGlobalC)) {
+            $descuentoGlobalC = 0;
         }
 
         $emisorigv = new ControladorEmpresa();
@@ -219,9 +221,9 @@ class ControladorCompras
             $icbper += $v['icbper'];
         }
         $subTotal = $op_gravadas + $op_exoneradas + $op_inafectas;
-        $op_gravadas = $op_gravadas - $descuentoGlobal;
-        $descuentototal = $descuentoGlobal + $desc_items;
-        if ($descuentoGlobal > 0) {
+        $op_gravadas = $op_gravadas - $descuentoGlobalC;
+        $descuentototal = $descuentoGlobalC + $desc_items;
+        if ($descuentoGlobalC > 0) {
             $igv = $op_gravadas * $emisorigv->igv_dos;
         }
         $total = $op_gravadas + $op_exoneradas + $op_inafectas + $igv + $icbper;
@@ -340,7 +342,7 @@ class ControladorCompras
 		  })
           $('.nuevoProductoC table #itemsP').html('');
           $('#formCompra .totales input').val(0.00);
-				  $('#descuentoGlobalC').val(0);
+				  $('#descuentoGlobalCC').val(0);
 				  $('#docIdentidad').val('');
 				  $('#razon_social').val('');
 				  $('#comentario').val('');

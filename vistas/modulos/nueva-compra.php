@@ -293,22 +293,22 @@ use Controladores\ControladorSunat;
                                       <div class="input-group">
                                         <span class="input-group-addon"><i class="fas fa-money-bill-wave"></i></span>
                                         <span class="input-group-addon">&nbsp;S/</i></span>
-                                        <input type="number" class="form-control" style="display: none" min="0" placeholder="0.00" id="descuentoGlobalC" name=" descuentoGlobalP" value="" placeholder="Ingrese descuento">
-                                        <input type="number" class="form-control" min="0" maxlength="3" placeholder="0.00" id="descuentoGlobal" name=" descuentoGlobal" value="" placeholder=" Ingrese descuento">
+                                        <input type="number" class="form-control" style="display: none" minlength="0" maxlength="3" min="0" max="3" placeholder="0.00" id="descuentoGlobalP" name=" descuentoGlobalP" value="" placeholder="Ingrese descuento">
+                                        <input type="number" class="form-control" minlength="0" maxlength="3" min="0" max="3" placeholder="0.00" id="descuentoGlobalC" name=" descuentoGlobal" value="" placeholder=" Ingrese descuento">
                                       </div>
-                                        <p id="maxMsg" class="alert alert-danger" style="display:none;">El descuento no puede ser mayor que el subtotal</p>
-                                        <script>
-                                          var descuentocantidadInput = document.getElementById('descuentoGlobal');
-                                          var maxMsg = document.getElementById('maxMsg');
+                                      <p id="maxMsg" class="alert alert-danger" style="display:none;">El descuento no puede ser mayor que el subtotal</p>
+                                      <script>
+                                        var descuentocantidadInput = document.getElementById('descuentoGlobalC');
+                                        var maxMsg = document.getElementById('maxMsg');
 
-                                          descuentocantidadInput.addEventListener('input', function(event) {
-                                            if (descuentocantidadInput.value > 200) {
-                                              maxMsg.style.display = 'block';
-                                            } else {
-                                              maxMsg.style.display = 'none';
-                                            }
-                                          });
-                                        </script>
+                                        descuentocantidadInput.addEventListener('input', function(event) {
+                                          if (descuentocantidadInput.value > 200) {
+                                            maxMsg.style.display = 'block';
+                                          } else {
+                                            maxMsg.style.display = 'none';
+                                          }
+                                        });
+                                      </script>
                                     </div>
                                   </td>
                                 </tr>
@@ -375,7 +375,7 @@ use Controladores\ControladorSunat;
                                   <td><input type="text" class="" name="subtotalc" id="subtotalc" value="0.00" readonly /></td>
                                 </tr>
                                 </tr>
-                                <tr class="">
+                                <tr class="" style="display: none;">
                                   <td>Op.Gravadas</td>
                                   <td><input type="text" class="" name="op_gravadas" id="op_gravadas" value="0.00" readonly /></td>
                                 </tr>
@@ -607,7 +607,7 @@ use Controladores\ControladorSunat;
               <div class="col-md-4 col-xs-6">
                 <div class="form-group">
                   <span class="input-group-addonn">Descuento</span>
-                  <input type="text" class="form-control" name="descuento_item" id="descuento_item" onkeyup="this.value=Numeros(this.value)" placeholder="" value="0" required>
+                  <input type="text" class="form-control" maxlength="3" name="descuento_item" id="descuento_item" onkeyup="this.value=Numeros(this.value)" placeholder="" value="0" required>
 
                 </div>
               </div>
