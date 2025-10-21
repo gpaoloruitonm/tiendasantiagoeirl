@@ -230,8 +230,10 @@ class DataTables
       $totalRegistros   = $pdo->query("SELECT count(*) AS numrows FROM $sTable  $sWhere");
       $totalRegistros = $totalRegistros->fetch()['numrows'];
       // $tpages = ceil($totalRegistros / $per_page);
-      $limit = $limit > 0 ? $limit : 10; // Valor por defecto
-      $tpages = $limit > 0 ? ceil($totalRegistros / $limit) : 1;
+      // $limit = $limit > 0 ? $limit : 10; // Valor por defecto
+      // $tpages = $limit > 0 ? ceil($totalRegistros / $limit) : 1;
+      $per_page = $per_page > 0 ? $per_page : 10; // Valor por defecto
+      $tpages = ceil($totalRegistros / $per_page);
       $reload = './index.php';
       //main query to fetch the data
       $pdo =  Conexion::conectar();

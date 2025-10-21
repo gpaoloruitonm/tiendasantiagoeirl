@@ -37,8 +37,6 @@ use Controladores\ControladorUsuarios;
       </section>
     </section>
 
-
-
     <!-- <section class="content"> -->
     <section class="container-fluid panel-medio">
       <!-- BOX INI -->

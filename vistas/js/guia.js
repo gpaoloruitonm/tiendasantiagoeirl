@@ -1,6 +1,11 @@
 $(document).ready(function () {
-  document.getElementById("modalidadTraslado").value = "02";
-  document.getElementById("tipoDocTransporte").value = "1";
+  // Verificar que los elementos existen antes de asignar valores
+  if (document.getElementById("modalidadTraslado")) {
+    document.getElementById("modalidadTraslado").value = "02";
+  }
+  if (document.getElementById("tipoDocTransporte")) {
+    document.getElementById("tipoDocTransporte").value = "1";
+  }
 });
 
 $(".resultado-ubigeos-partida").hide();
@@ -191,7 +196,7 @@ $(document).on("keyup", "#ubigeoPartida", function (e) {
     method: "POST",
     url: "ajax/crear-guia.ajax.php",
     data: datos,
-    beforeSend: function () {},
+    beforeSend: function () { },
     success: function (data) {
       if (ubigeopartida == "") {
         $(".resultado-ubigeos-partida").hide();
@@ -208,7 +213,7 @@ $(document).on("keyup", "#ubigeoLlegada", function (e) {
     method: "POST",
     url: "ajax/crear-guia.ajax.php",
     data: datos,
-    beforeSend: function () {},
+    beforeSend: function () { },
     success: function (data) {
       if (ubigeollegada == "") {
         $(".resultado-ubigeos-llegada").hide();
@@ -227,7 +232,7 @@ $(document).on("click", ".btn-ubigeo-partida", function (e) {
     url: "ajax/crear-guia.ajax.php",
     data: datos,
     dataType: "json",
-    beforeSend: function () {},
+    beforeSend: function () { },
     success: function (data) {
       $("#ubigeoPartida").val(data["id"]);
       $(".resultado-ubigeos-partida").hide();
@@ -243,7 +248,7 @@ $(document).on("click", ".btn-ubigeo-llegada", function (e) {
     url: "ajax/crear-guia.ajax.php",
     data: datos,
     dataType: "json",
-    beforeSend: function () {},
+    beforeSend: function () { },
     success: function (data) {
       $("#ubigeoLlegada").val(data["id"]);
       $(".resultado-ubigeos-llegada").hide();
@@ -299,7 +304,7 @@ $(document).on("keyup", "#serieCorrelativoReferencial", function (e) {
     method: "POST",
     url: "ajax/crear-guia.ajax.php",
     data: datos,
-    beforeSend: function () {},
+    beforeSend: function () { },
     success: function (respuesta) {
       $(".resultado-serie").show().html(respuesta);
     },
@@ -313,7 +318,7 @@ $(document).on("click", ".btn-serie-correlativo", function (e) {
     method: "POST",
     url: "ajax/crear-guia.ajax.php",
     data: datos,
-    beforeSend: function () {},
+    beforeSend: function () { },
     success: function (respuesta) {
       $(".nuevoProducto .table #itemsPG").html(respuesta);
       $(".resultado-serie").hide();

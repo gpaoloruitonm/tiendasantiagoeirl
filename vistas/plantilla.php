@@ -257,7 +257,7 @@ $tiem = time();
 
 
   <div class="connection"></div>
- <input type="hidden" class="" id="tipo_cambio" name="tipo_cambio" value="">
+  <input type="hidden" class="" id="tipo_cambio" name="tipo_cambio" value="">
   <input type="hidden" class="" id="fecha" name="fecha" value="<?php echo date("Y-m-d") ?>">
   <!-- End custom js for this page-->
   <script src="vistas/js/plantilla.js"></script>
@@ -279,6 +279,7 @@ $tiem = time();
   <script src="vistas/js/guia.js?q=<?php echo $tiempo; ?>"></script>
   <script src="vistas/js/cuotas.js"></script>
   <script src="vistas/js/cotizacion.js"></script>
+  <script src="vistas/js/tipo_cambio.js?q=<?php echo $tiempo; ?>"></script>
 
   <script>
     $(document).ready(function() {
@@ -300,7 +301,6 @@ $tiem = time();
       $(".reload-all").hide();
     })
   </script>
- 
 </body>
 
 </html>
