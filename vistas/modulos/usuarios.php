@@ -20,6 +20,28 @@ use Controladores\ControladorUsuarios;
 
   ?>
     <div style="padding:5px"></div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+    <section class="container-fluid">
+      <section class="content-header dashboard-header">
+        <div class="box container-fluid" style="border:0px; margin:0px; padding:0px;">
+          <div class="col-lg-12 col-xs-12" style="border:0px; margin:0px; padding:0px; border-radius:10px;">
+
+            <div class="col-md-3 hidden-sm hidden-xs">
+              <button class=""><i class="fas fa-file-invoice"></i> Usuarios</button>
+            </div>
+            <div class="col-md-9  col-sm-12 btns-dash">
+              <a href="index.php?ruta=crear-factura" class="btn pull-right" style="margin-left:10px"><i class="fas fa-file-invoice"></i> Emitir factura</a>
+              <a href="index.php?ruta=crear-boleta" class="btn pull-right"><i class="fas fa-file-invoice"> </i> Emitir boleta</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
 
     <!-- <section class="content"> -->
     <section class="container-fluid panel-medio">
@@ -236,7 +258,15 @@ use Controladores\ControladorUsuarios;
 
               <div class="form-group">
                 <div class="input-group">
+<<<<<<< HEAD
                   <input type="text" class="form-control " name="nuevoDni" id="nuevoDni" placeholder="Ingresar DNI" title="DNI">
+=======
+<<<<<<< HEAD
+                  <input type="text" class="form-control " name="nuevoDni" id="nuevoDni" placeholder="Ingresar DNI" title="DNI">
+=======
+                  <input type="text" class="form-control" name="nuevoDni" id="nuevoDni" placeholder="Ingresar DNI" title="DNI">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
                   <span class="input-group-addon btn buscarRuc"><i class="fa fa-search"></i></span>
                   <div class="resultadoCliente" idCliente=""><a href="#" class="btn-add"></a></div>
                 </div>
@@ -244,7 +274,15 @@ use Controladores\ControladorUsuarios;
 
               <div class="form-group">
                 <div class="input-group">
+<<<<<<< HEAD
                   <input type="text" class="form-control " name="nuevoNombre" id="nuevoNombre" placeholder="Ingresar nombre" title="Nombre">
+=======
+<<<<<<< HEAD
+                  <input type="text" class="form-control " name="nuevoNombre" id="nuevoNombre" placeholder="Ingresar nombre" title="Nombre">
+=======
+                  <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingresar nombre" title="Nombre">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
                   <span class="input-group-addon btn btn-secondary" onclick="limpiarInputs()"><i class="fas fa-eraser"></i></span>
                 </div>
               </div>
@@ -257,24 +295,54 @@ use Controladores\ControladorUsuarios;
               </script>
 
               <div class="form-group">
+<<<<<<< HEAD
 
                 <input type="text" class="form-control " name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar correo electrónico" title="Correo electrónico">
 
+=======
+<<<<<<< HEAD
+
+                <input type="text" class="form-control " name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar correo electrónico" title="Correo electrónico">
+
+=======
+                <input type="text" class="form-control" name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar correo electrónico" title="Correo electrónico">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
               </div>
 
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
+<<<<<<< HEAD
 
                     <input type="text" class="form-control nuevoUser" name="nuevoUsuario" id="nuevoUsuario" placeholder="Ingresar usuario" title="Usuario">
 
+=======
+<<<<<<< HEAD
+
+                    <input type="text" class="form-control nuevoUser" name="nuevoUsuario" id="nuevoUsuario" placeholder="Ingresar usuario" title="Usuario">
+
+=======
+                    <input type="text" class="form-control nuevoUser" name="nuevoUsuario" id="nuevoUsuario" placeholder="Ingresar usuario" title="Usuario">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
+<<<<<<< HEAD
 
                     <input type="password" class="form-control " name="nuevoPassword" id="nuevoPassword" placeholder="Ingresar contraseña" title="Contraseña">
 
+=======
+<<<<<<< HEAD
+
+                    <input type="password" class="form-control " name="nuevoPassword" id="nuevoPassword" placeholder="Ingresar contraseña" title="Contraseña">
+
+=======
+                    <input type="password" class="form-control" name="nuevoPassword" id="nuevoPassword" placeholder="Ingresar contraseña" title="Contraseña">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
                   </div>
                 </div>
               </div>

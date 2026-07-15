@@ -1,4 +1,8 @@
 $(document).ready(function () {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
   const modalidad = document.getElementById("modalidadTraslado");
   if (modalidad) {
     modalidad.value = "02";
@@ -6,6 +10,17 @@ $(document).ready(function () {
   const tipoDoc = document.getElementById("tipoDocTransporte");
   if (tipoDoc) {
     tipoDoc.value = "1";
+<<<<<<< HEAD
+=======
+=======
+  // Verificar que los elementos existen antes de asignar valores
+  if (document.getElementById("modalidadTraslado")) {
+    document.getElementById("modalidadTraslado").value = "02";
+  }
+  if (document.getElementById("tipoDocTransporte")) {
+    document.getElementById("tipoDocTransporte").value = "1";
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
   }
 });
 

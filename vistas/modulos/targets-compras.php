@@ -1,5 +1,14 @@
 <?php
+<<<<<<< HEAD
 require_once __DIR__ . '/../../vendor/autoload.php';
+=======
+<<<<<<< HEAD
+require_once __DIR__ . '/../../vendor/autoload.php';
+=======
+require_once("../../vendor/autoload.php");
+
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
 use Controladores\ControladorReportes;
 // widgets-----------
 $moneda = 'S/ ';

@@ -16,10 +16,24 @@
     </div>
 
     <ul class="sidebar-menu" data-widget="tree">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
       <li class="menu-ini-p">
         <a href="?ruta=inicio">
           <i class="fas fa-home fa-lg bg-menu"></i>
           <span class="mg-menu">Inicio</span>
+<<<<<<< HEAD
+=======
+=======
+
+      <li class=" menu-ini-p">
+        <a href="index.php?ruta=inicio">
+          <i class="fas fa-home fa-lg bg-menu"></i>
+          <span class="mg-menu"> Inicio</span>
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
         </a>
       </li>
 
@@ -31,8 +45,18 @@
           </span>
         </a>
         <ul class="treeview-menu">
+<<<<<<< HEAD
           <li><a href="?ruta=empresa"><i class="fa fa-cog fa-lg"></i> Configurar empresa</a></li>
           <li><a href="?ruta=unidad-medida"><i class="fa fa-cog fa-lg"></i> Configurar Unidad Medida</a></li>
+=======
+<<<<<<< HEAD
+          <li><a href="?ruta=empresa"><i class="fa fa-cog fa-lg"></i> Configurar empresa</a></li>
+          <li><a href="?ruta=unidad-medida"><i class="fa fa-cog fa-lg"></i> Configurar Unidad Medida</a></li>
+=======
+          <li><a href="index.php?ruta=empresa"><i class="fa fa-cog fa-lg"></i> Configurar empresa</a></li>
+          <li><a href="index.php?ruta=unidad-medida"><i class="fa fa-cog fa-lg"></i> Configurar Unidad Medida</a></li>
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
         </ul>
       </li>
 
@@ -45,6 +69,10 @@
           </span>
         </a>
         <ul class="treeview-menu">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
           <li><a href="?ruta=crear-factura"><i class="fa fa-file-invoice"></i> Emitir factura</a></li>
           <li><a href="?ruta=crear-boleta"><i class="fa fa-file-invoice"></i> Emitir boleta</a></li>
           <li><a href="?ruta=crear-nota"><i class="fa fa-file-invoice"></i> Emitir nota de venta</a></li>
@@ -57,15 +85,59 @@
         <a href="#">
           <i class="fas fa-file-invoice fa-lg"></i>
           <span class="mg-menu">Cotizaciones</span>
+<<<<<<< HEAD
+=======
+=======
+          <li><a href="index.php?ruta=crear-factura"><i class="fa fa-file-invoice"></i> Emitir factura</a></li>
+          <li><a href="index.php?ruta=crear-boleta"><i class="fa fa-file-invoice"></i> Emitir boleta</a></li>
+          <li><a href="index.php?ruta=crear-nota"><i class="fa fa-file-invoice"></i> Emitir nota de venta</a></li>
+          <li><a href="index.php?ruta=nota-credito"><i class="fa fa-file-invoice"></i> Emitir nota de crédito</a></li>
+          <li><a href="index.php?ruta=nota-debito"><i class="fa fa-file-invoice"></i> Emitir nota de débito</a></li>
+        </ul>
+      </li>
+
+      <!-- <li class="treeview">
+        <a href="#">
+          <i class="fas fa-file-invoice fa-lg"></i>
+          <span class="mg-menu">Guía de Remisión</span>
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
           <li><a href="?ruta=crear-cotizacion"><i class="fa fa-file-invoice"></i> Crear Cotización</a></li>
           <li><a href="?ruta=listar-cotizaciones"><i class="fa fa-file-invoice"></i> Listar Cotizaciones</a></li>
         </ul>
       </li>
+<<<<<<< HEAD
+=======
+=======
+          <li><a href="index.php?ruta=crear-guia"><i class="fa fa-file-invoice"></i> Crear Guía de Remisión</a></li>
+          <li><a href="index.php?ruta=ver-guias"><i class="fa fa-file-invoice"></i> Listar Guías de Remisión</a></li>
+        </ul>
+      </li> -->
+
+      <!-- <li class="treeview">
+        <a href="#">
+          <i class="fas fa-file-invoice fa-lg"></i>
+          <span class="mg-menu">Cotizaciones</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="index.php?ruta=crear-cotizacion"><i class="fa fa-file-invoice"></i> Crear Cotización</a></li>
+          <li><a href="index.php?ruta=listar-cotizaciones"><i class="fa fa-file-invoice"></i> Listar Cotizaciones</a></li>
+        </ul>
+      </li> -->
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
 
       <li class="treeview">
         <a href="#">
@@ -76,14 +148,34 @@
           </span>
         </a>
         <ul class="treeview-menu">
+<<<<<<< HEAD
           <li><a href="?ruta=resumen-diario"><i class="fa fa-file-invoice"></i> Crear resúmenes de boletas</a></li>
           <li><a href="?ruta=resumen-diario"><i class="fa fa-file-invoice"></i> Ver resúmenes de boletas</a></li>
+=======
+<<<<<<< HEAD
+          <li><a href="?ruta=resumen-diario"><i class="fa fa-file-invoice"></i> Crear resúmenes de boletas</a></li>
+          <li><a href="?ruta=resumen-diario"><i class="fa fa-file-invoice"></i> Ver resúmenes de boletas</a></li>
+=======
+          <li><a href="index.php?ruta=resumen-diario"><i class="fa fa-file-invoice"></i> Crear resúmenes de boletas</a></li>
+          <li><a href="index.php?ruta=resumen-diario"><i class="fa fa-file-invoice"></i> Ver resúmenes de boletas</a></li>
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
         </ul>
       </li>
 
       <li class="">
+<<<<<<< HEAD
         <a href="?ruta=ventas">
           <i class="fas fa-users fa-lg"></i> <span class="mg-menu">Administrar ventas</span>
+=======
+<<<<<<< HEAD
+        <a href="?ruta=ventas">
+          <i class="fas fa-users fa-lg"></i> <span class="mg-menu">Administrar ventas</span>
+=======
+        <a href="index.php?ruta=ventas">
+          <i class="fas fa-users fa-lg"> </i> <span class="mg-menu">Administrar ventas</span>
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
         </a>
       </li>
 
@@ -96,8 +188,18 @@
           </span>
         </a>
         <ul class="treeview-menu">
+<<<<<<< HEAD
           <li><a href="?ruta=reporte-ventas"><i class="fa fa-file-invoice"></i> Reporte de ventas</a></li>
           <li><a href="?ruta=reporte-compras"><i class="fa fa-file-invoice"></i> Reporte de compras</a></li>
+=======
+<<<<<<< HEAD
+          <li><a href="?ruta=reporte-ventas"><i class="fa fa-file-invoice"></i> Reporte de ventas</a></li>
+          <li><a href="?ruta=reporte-compras"><i class="fa fa-file-invoice"></i> Reporte de compras</a></li>
+=======
+          <li><a href="index.php?ruta=reporte-ventas"><i class="fa fa-file-invoice"></i> Reporte de ventas</a></li>
+          <li><a href="index.php?ruta=reporte-compras"><i class="fa fa-file-invoice"></i> Reporte de compras</a></li>
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
         </ul>
       </li>
 
@@ -106,12 +208,35 @@
           <i class="fas fa-file-invoice-dollar fa-lg"></i>
           <span class="mg-menu">Compras</span>
           <span class="pull-right-container">
+<<<<<<< HEAD
             <!-- <i class="fa fa-angle-left pull-right"></i> -->
           </span>
+=======
+<<<<<<< HEAD
+            <!-- <i class="fa fa-angle-left pull-right"></i> -->
+          </span>
+=======
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="index.php?ruta=nueva-compra"><i class="fa fa-file-invoice"></i> Nueva compra</a></li>
+        </ul>
+      </li>
+
+      <li class="">
+        <a href="index.php?ruta=usuarios">
+          <i class="fas fa-users fa-lg"> </i> <span class="mg-menu">Usuarios</span>
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
         </a>
       </li>
 
       <li class="">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
         <a href="?ruta=usuarios">
           <i class="fas fa-users fa-lg"></i> <span class="mg-menu">Usuarios</span>
         </a>
@@ -119,21 +244,49 @@
 
       <li class="">
         <a href="?ruta=categorias">
+<<<<<<< HEAD
+=======
+=======
+        <a href="index.php?ruta=categorias">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
           <i class="fab fa-elementor fa-lg"></i> <span class="mg-menu">Categorías</span>
         </a>
       </li>
 
       <li class="">
+<<<<<<< HEAD
         <a href="?ruta=productos">
+=======
+<<<<<<< HEAD
+        <a href="?ruta=productos">
+=======
+        <a href="index.php?ruta=productos">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
           <i class="fab fa-product-hunt fa-lg"></i> <span class="mg-menu">Productos</span>
         </a>
       </li>
 
       <li class="">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
         <a href="?ruta=clientes">
           <i class="fas fa-users fa-lg"></i> <span class="mg-menu">Clientes</span>
         </a>
       </li>
+<<<<<<< HEAD
+=======
+=======
+        <a href="index.php?ruta=clientes">
+          <i class="fas fa-users fa-lg"></i> <span class="mg-menu">Clientes</span>
+        </a>
+      </li>
+
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
     </ul>
   </section>
 </aside>

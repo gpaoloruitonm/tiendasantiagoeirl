@@ -4,6 +4,28 @@ use Controladores\ControladorClientes;
 ?>
 <div class="content-wrapper panel-medio-principal">
   <div style="padding:5px"></div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+  <section class="container-fluid">
+    <section class="content-header dashboard-header">
+
+      <div class="box container-fluid" style="border:0px; margin:0px; padding:0px;">
+        <div class="col-lg-12 col-xs-12" style="border:0px; margin:0px; padding:0px; border-radius:10px;">
+
+          <div class="col-md-3 hidden-sm hidden-xs">
+            <button class=""><i class="fas fa-users"></i> Clientes</button>
+          </div>
+          <div class="col-lg-9 col-md-12 col-sm-12 btns-dash">
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
+>>>>>>> 63f707401775e318dbf26b8f095fdfa9d5b44b33
   <!-- <section class="content"> -->
   <section class="container-fluid panel-medio">
     <!-- BOX INI -->
