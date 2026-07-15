@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
 use Controladores\ControladorUsuarios;
 ?>
 <div class="content-wrapper panel-medio-principal">

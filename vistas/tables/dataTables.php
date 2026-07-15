@@ -106,6 +106,7 @@ class DataTables
     $action = $_REQUEST['action'] ?? '';
     if ($action != 'ajax') return;
 
+<<<<<<< HEAD
     $perfilUsuario = $_REQUEST['perfilOcultoc'] ?? '';
     $search = $this->getSearchValue('search');
     $perPage = $this->getPerPage($_GET['selectnum'] ?? null);
@@ -139,6 +140,24 @@ class DataTables
 
       if ($perfilUsuario == 'Administrador') {
         echo "<button class='btn btn-danger btnEliminarCliente' idCliente='{$value['id']}'><i class='fas fa-trash-alt'></i></button>";
+=======
+    $action = (isset($_REQUEST['action']) && $_REQUEST['action'] != NULL) ? $_REQUEST['action'] : '';
+    if ($action == 'ajax') {
+      // escaping, additionally removing everything that could be (html/javascript-) code
+      $perfilUsuario = $_REQUEST['perfilOcultoc'] ?? '';
+      $search = $_GET['search'] ?? '';
+      $selectnum = $_GET['selectnum'] ?? 10;
+      $aColumns = array('nombre', 'documento', 'ruc'); //Columnas de busqueda
+      $sTable = 'clientes';
+      $sWhere = "";
+      if (isset($search)) {
+        $sWhere = "WHERE (";
+        for ($i = 0; $i < count($aColumns); $i++) {
+          $sWhere .= $aColumns[$i] . " LIKE '%" . $search . "%' OR ";
+        }
+        $sWhere = substr_replace($sWhere, "", -3);
+        $sWhere .= ')';
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
       }
 
       echo "    </div>
@@ -159,10 +178,30 @@ class DataTables
     $action = $_REQUEST['action'] ?? '';
     if ($action != 'ajax') return;
 
+<<<<<<< HEAD
     $perfilUsuario = $_REQUEST['perfilOculto'] ?? '';
     $search = $this->getSearchValue('searchProducto');
     $perPage = $this->getPerPage($_GET['selectnum'] ?? null);
     $page = (int)($_REQUEST['page'] ?? 1);
+=======
+    $action = (isset($_REQUEST['action']) && $_REQUEST['action'] != NULL) ? $_REQUEST['action'] : '';
+    if ($action == 'ajax') {
+      // escaping, additionally removing everything that could be (html/javascript-) code
+      $perfilUsuario = $_REQUEST['perfilOculto'] ?? '';
+      $searchProducto = $_GET['searchProducto'] ?? '';
+      $selectnum = $_GET['selectnum'] ?? 10;
+      $aColumns = array('codigo', 'serie', 'descripcion'); //Columnas de busqueda
+      $sTable = 'productos';
+      $sWhere = "";
+      if (isset($searchProducto)) {
+        $sWhere = "WHERE (";
+        for ($i = 0; $i < count($aColumns); $i++) {
+          $sWhere .= $aColumns[$i] . " LIKE '%" . $searchProducto . "%' OR ";
+        }
+        $sWhere = substr_replace($sWhere, "", -3);
+        $sWhere .= ')';
+      }
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
 
     $columns = ['codigo', 'serie', 'descripcion'];
     $table = 'productos';
@@ -195,9 +234,154 @@ class DataTables
         echo "<button class='btn btn-danger btnEliminarProducto' idProducto='{$value['id']}' codigo='{$value['codigo']}' imagen='{$value['imagen']}'><i class='fas fa-trash-alt'></i></button>";
       }
 
+<<<<<<< HEAD
       echo "    </div>
                 </td>
             </tr>";
+=======
+      //Count the total number of row in your table*/
+      $pdo =  Conexion::conectar();
+      $totalRegistros   = $pdo->query("SELECT count(*) AS numrows FROM $sTable  $sWhere");
+      $totalRegistros = $totalRegistros->fetch()['numrows'];
+      // $tpages = ceil($totalRegistros / $per_page);
+      // $limit = $limit > 0 ? $limit : 10; // Valor por defecto
+      // $tpages = $limit > 0 ? ceil($totalRegistros / $limit) : 1;
+      $per_page = $per_page > 0 ? $per_page : 10; // Valor por defecto
+      $tpages = ceil($totalRegistros / $per_page);
+      $reload = './index.php';
+      //main query to fetch the data
+      $pdo =  Conexion::conectar();
+      $registros = $pdo->prepare("SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page");
+      $registros->execute();
+
+      $registros = $registros->fetchall();
+
+
+      foreach ($registros as $key => $value) :
+
+        $item = 'id';
+        $valor = $value['id_categoria'];
+        $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+        // <td><img src="'.$value['imagen'].'" alt="" class="img-thumbnail" width="40px"></td>
+        echo '<tr class="contenedor-items">
+           <td>' . ++$key . '</td>
+          
+           <td> ' . $value['codigo'] . '</td>
+           <td> ' . $value['serie'] . '</td>
+           <td>' . $value['descripcion'] . '</td>';
+
+        echo '<td>' . $categoria['categoria'] . '</td>
+           <td> <button class="btn-primary stock' . $value['id'] . ' btn-stock"  stock="' . $value["stock"] . '">' . $value['stock'] . '</button></td>
+         
+           <td>
+       
+           <input type="number" class="number cantidad-stock" name="cantidad" id="cantidad' . $value['id'] . '"  idProducto="' . $value["id"] . '" min="1" value="" onkeyup="this.value=Numeros(this.value)">
+           </td>
+
+           <td> ' . $value['precio_unitario'] . '</td>           
+
+           <td class="btn-prod">
+           <div class="btn-group"  style="; !important; justify-content: center;">       
+           <button class="btn btn-primary btn-sm agregarProducto" descripcionP="' . $value["descripcion"] . '" idProducto="' . $value["id"] . '" ><i class="fa fa-plus"></i></button>  
+          </div> 
+            
+
+
+           </td>
+           <td class="btn-prod">
+           <div class="btn-group">   
+           <button class="btn btn-primary btn-sm vermasProductos btn-close" idProducto="' . $value["id"] . '"><i class="fas fa-tools"></i></button>     
+                 
+            </div>
+    
+            </td>            
+          
+       
+         </tr> ';
+
+        echo '<tr >
+         <td class="" colspan="10">
+         
+         <div class="super-contenedor-precios super-cont-precios' . $value["id"] . '">
+
+         <div class="desc-productos" ><h3>' . $value['descripcion'] . '</h3></div>
+         <div class="contenedor-precios">
+               
+        <label>Tipo IGV</label>';
+        $item = 'codigo';
+        $valor = $value['codigoafectacion'];
+        $afectacionT = ControladorSunat::ctrMostrarTipoAfectacion($item, $valor);
+
+        echo '<select class="tipo_afectacion' . $value["id"] . ' pre-css" id="tipoAfectacion" idProducto="' . $value["id"] . '" tpa="' . $value['codigoafectacion'] . '">
+        <option value="' . $afectacionT['codigo'] . '">' . $afectacionT['descripcion'] . '</option>';
+        $item = null;
+        $valor = null;
+        $tipoAfectacion = ControladorSunat::ctrMostrarTipoAfectacion($item, $valor);
+
+        foreach ($tipoAfectacion as $k => $afectacion) :
+          echo '
+   
+        <option value="' . $afectacion['codigo'] . '">' . $afectacion['descripcion'] . '</option>
+       ';
+        endforeach;
+
+        echo ' </select>    
+        
+
+        <label class="">Precio Unitario</label> 
+        <input type="text" class="precio_unitario' . $value['id'] . ' pre-css" id="precio_unitario" name="" value="' . $value['precio_unitario'] . '" idProducto="' . $value["id"] . '" onkeyup="this.value=Numeros(this.value)">
+        <label>Valor Unitario</label>
+         <input type="text" class="valor_unitario' . $value['id'] . ' pre-css" name="" value="' . $value['valor_unitario'] . '" onkeyup="this.value=Numeros(this.value)" readonly>
+         
+         <label>Impuesto a la bolsa plástica</label>
+         <div class="contenedor_icbper">
+
+         <div class="modo-contenedor-icbper">
+         <label for="siic" id="s' . $value["id"] . '" class="s alterno btn-icb-si" idProducto="' . $value["id"] . '" val="s" >||</label>              
+         <label for="siic" id="n' . $value["id"] . '" class="n icbno btn-icb-no" idProducto="' . $value["id"] . '" val="n" >
+         No</label>
+        
+         </div>
+
+          <input type="hidden" name="modo" id="modo_icbper" class="modo-icbper' . $value['id'] . '" value="n">
+          <input type="text" class="icbper' . $value['id'] . ' pre-css" name="" value="" onkeyup="this.value=Numeros(this.value)" readonly>
+        </div>
+
+        </div>
+         <div class="contenedor-precios">
+        
+        <label>Descuento</label>
+         <input type="text" class="descuento_item' . $value['id'] . ' pre-css" id="descuento_item" name="precio_v" value="0.00" idProducto="' . $value["id"] . '">
+        <label>Sub total</label>
+         <input type="text" class="subtotal' . $value['id'] . ' pre-css" name="precio_v" value="' . $value['valor_unitario'] . '" onkeyup="this.value=Numeros(this.value)" readonly>
+
+        <label>IGV de la linea</label>
+         <input type="text" class="igv' . $value['id'] . ' pre-css" name="precio_v" value="' . $value['igv'] . '" readonly>
+         
+        <label>Total</label>
+         <input type="text" class="total' . $value['id'] . ' pre-css" name="precio_v" value="' . $value['precio_unitario'] . '" onkeyup="this.value=Numeros(this.value)" readonly>
+
+         <div class="btn-grupos" >   
+       <button class="btn btn-primary btn-sm closeModalProductos btn-close" descripcionP="' . $value["descripcion"] . '" idProducto="' . $value["id"] . '"><i class="fa fa-times-circle"></i></button>  
+
+       <button class="btn btn-primary btn-sm agregarProducto" descripcionP="' . $value["descripcion"] . '" idProducto="' . $value["id"] . '"><i class="fa fa-plus"></i></button>  
+         </div>
+         </div>
+         </div>
+         
+         
+         </td>
+         
+         </tr>';
+      endforeach;
+
+
+      $paginador = new Paginacion();
+      $paginador = $paginador->paginarProductosVentas($reload, $page, $tpages, $adjacents);
+      echo "<tr>
+                     <td colspan='10' style='text-align:center;'>" . $paginador . "</td>
+                    </tr>";
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
     }
 
     $reload = './index.php';

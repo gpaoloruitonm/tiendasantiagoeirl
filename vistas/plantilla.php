@@ -279,6 +279,7 @@ $tiem = time();
   <script src="vistas/js/guia.js?q=<?php echo $tiempo; ?>"></script>
   <script src="vistas/js/cuotas.js"></script>
   <script src="vistas/js/cotizacion.js"></script>
+  <script src="vistas/js/tipo_cambio.js?q=<?php echo $tiempo; ?>"></script>
 
   <script>
     $(document).ready(function() {
@@ -300,7 +301,10 @@ $tiem = time();
       $(".reload-all").hide();
     })
   </script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
 </body>
 
 </html>

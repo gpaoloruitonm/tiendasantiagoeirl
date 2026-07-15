@@ -88,13 +88,21 @@
 
              <!-- Menu Body -->
              <li class="">
+<<<<<<< HEAD
                <a href="?ruta=usuarios">
+=======
+               <a href="index.php?ruta=usuarios"">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
                  <i class="fas fa-user fa-lg" style="color: #0e6edf"> </i> <span class="mg-menu">Mi perfil</span>
 
                </a>
              </li>
              <li class="">
+<<<<<<< HEAD
                <a href="?ruta=empresa">
+=======
+               <a href="index.php?ruta=empresa">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
                  <i class="fas fa-cog  fa-lg" style="color: #0e6edf"> </i> <span class="mg-menu">Configurar empresa</span>
 
                </a>
@@ -105,7 +113,11 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div> -->
 
+<<<<<<< HEAD
                <a href="?ruta=salir" class="">
+=======
+               <a href="index.php?ruta=salir" class="">
+>>>>>>> 9439536e0268cfd2c3cc7bc7bc06083e7ba7a236
                  <i class="fas fa-sign-out-alt fa-lg" style="color:tomato"></i><span class="mg-menu"> Salir </span>
                </a>
 
