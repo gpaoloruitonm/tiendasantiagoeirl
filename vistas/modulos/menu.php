@@ -113,7 +113,7 @@
 
       <!-- COMPRAS -->
       <li>
-        <a href="?ruta=reporte-compras">
+        <a href="?ruta=compras">
           <i class="fas fa-file-invoice-dollar fa-lg"></i>
           <span class="mg-menu">Compras</span>
         </a>

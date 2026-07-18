@@ -10,18 +10,15 @@ class ControladorClientes
     // MOSTRAR CLIENTES
     public static  function ctrMostrarClientes($item, $valor)
     {
-
         $tabla = "clientes";
         $respuesta = ModeloClientes::mdlMostrarClientes($tabla, $item, $valor);
         return $respuesta;
     }
 
     // CREAR CLIENTE
-    public  function ctrCrearCliente()
+    public function ctrCrearCliente()
     {
-
         if (isset($_POST['nuevoCliente'])) {
-
             // Validar que no exista un cliente con el mismo DNI o correo electrónico
             $dni = $_POST['nuevoDni'];
             $email = $_POST['nuevoEmail'];
@@ -29,20 +26,15 @@ class ControladorClientes
             $existeEmail = ModeloClientes::mdlMostrarClientes("clientes", "email", $email);
             if ($existeDni || $existeEmail) {
                 echo "<script>
-                    Swal.fire({
-                        title: '¡Error al guardar el cliente!',
-                        text: 'El DNI o correo electrónico ya se encuentra registrado.',
-                        icon: 'error',
-                        showCancelButton: false,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Cerrar'
-                    // }).then((result) => {
-                    //     if (result.isConfirmed) {
-                    //         window.location = 'clientes';
-                    //     }
-                    })
-                </script>";
+                Swal.fire({
+                    title: '¡Error al guardar el cliente!',
+                    text: 'El DNI o correo electrónico ya se encuentra registrado.',
+                    icon: 'error',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cerrar'
+                })</script>";
                 return;
             }
             if (
@@ -50,59 +42,60 @@ class ControladorClientes
                 preg_match('/^[0-9]+$/', $_POST["nuevoDni"]) &&
                 preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_POST["nuevoEmail"])
             ) {
-
                 $tabla = "clientes";
+
+                // === CORRECCIÓN: Manejar fecha_nacimiento ===
+                $fecha_nacimiento = null;
+                if (isset($_POST['nuevaFechaNacimiento']) && !empty($_POST['nuevaFechaNacimiento']) && $_POST['nuevaFechaNacimiento'] != '0000-00-00') {
+                    $fecha_nacimiento = $_POST['nuevaFechaNacimiento'];
+                }
+
                 $datos = array(
                     "nombre" => $_POST['nuevoCliente'],
                     "documento" => $_POST['nuevoDni'],
                     "email" => $_POST['nuevoEmail'],
                     "telefono" => $_POST['nuevoTelefono'],
                     "direccion" => $_POST['nuevaDireccion'],
-                    "ruc" => $_POST['nuevoRuc'],
-                    "razon_social" => $_POST['nuevoRS'],
-                    "fecha_nacimiento" => $_POST['nuevaFechaNacimiento']
+                    "ruc" => $_POST['nuevoRuc'] ?? '',
+                    "razon_social" => $_POST['nuevoRS'] ?? '',
+                    "ubigeo" => '',
+                    "fecha_nacimiento" => $fecha_nacimiento
                 );
 
                 $respuesta = ModeloClientes::mdlCrearCliente($tabla, $datos);
 
                 if ($respuesta == 'ok') {
                     echo "<script>
-                        Swal.fire({
-                            title: '¡El cliente ha sido guardado corréctamente!',
-                            text: '...',
-                            icon: 'success',
-                            showCancelButton: false,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Cerrar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-
-                            loadClientes(1);
-
-                            }
-                        })
-                        if(window.history.replaceState){
-                            window.history.replaceState(null,null, window.location.href);
-                            }
-                        
-                        </script>";
-                }
-            } else {
-                echo "<script>
                     Swal.fire({
-                        title: '¡El cliente no puede ir vacío o llevar caracteres especiales!',
+                        title: '¡El cliente ha sido guardado correctamente!',
                         text: '...',
-                        icon: 'error',
+                        icon: 'success',
                         showCancelButton: false,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Cerrar'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                        window.location = 'clientes';
+                            loadClientes(1);
                         }
-                    })</script>";
+                    })
+                </script>";
+                }
+            } else {
+                echo "<script>
+                Swal.fire({
+                    title: '¡El cliente no puede ir vacío o llevar caracteres especiales!',
+                    text: '...',
+                    icon: 'error',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cerrar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = '?ruta=clientes';
+                    }
+                })</script>";
             }
         }
     }
@@ -110,62 +103,61 @@ class ControladorClientes
     // EDITAR CLIENTE
     public function ctrEditarCliente()
     {
-
         if (isset($_POST['editarCliente'])) {
             if (
                 preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCliente"]) &&
                 preg_match('/^[0-9]+$/', $_POST["editarDni"]) &&
                 preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_POST["editarEmail"])
             ) {
-
                 $tabla = "clientes";
+
+                // === CORRECCIÓN: Manejar fecha_nacimiento ===
+                $fecha_nacimiento = null;
+                if (isset($_POST['editarFechaNacimiento']) && !empty($_POST['editarFechaNacimiento']) && $_POST['editarFechaNacimiento'] != '0000-00-00') {
+                    $fecha_nacimiento = $_POST['editarFechaNacimiento'];
+                }
+
                 $datos = array(
                     "nombre" => $_POST['editarCliente'],
                     "documento" => $_POST['editarDni'],
                     "email" => $_POST['editarEmail'],
                     "telefono" => $_POST['editarTelefono'],
                     "direccion" => $_POST['editarDireccion'],
-                    "ruc" => $_POST['editarRuc'],
-                    "razon_social" => $_POST['editarRS'],
-                    "fecha_nacimiento" => $_POST['editarFechaNacimiento'],
+                    "ruc" => $_POST['editarRuc'] ?? '',
+                    "razon_social" => $_POST['editarRS'] ?? '',
+                    "fecha_nacimiento" => $fecha_nacimiento,
                     "id" => $_POST['id']
                 );
 
                 $respuesta = ModeloClientes::mdlEditarCliente($tabla, $datos);
 
                 if ($respuesta == 'ok') {
-
                     echo "<script>
-                        Swal.fire({
-                            title: '¡El cliente ha sido editado corréctamente!',
-                            text: '...',
-                            icon: 'success',
-                            showCancelButton: false,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Cerrar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                            window.location = 'clientes';
-                            }
-                        })</script>";
-                }
-            } else {
-                echo "<script>
                     Swal.fire({
-                        title: '¡El cliente no puede ir vacío o llevar caracteres especiales!',
+                        title: '¡El cliente ha sido editado correctamente!',
                         text: '...',
-                        icon: 'error',
+                        icon: 'success',
                         showCancelButton: false,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Cerrar'
-                    // })
-                    // .then((result) => {
-                    //     if (result.isConfirmed) {
-                    //     window.location = 'clientes';
-                    //     }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = '?ruta=clientes';
+                        }
                     })</script>";
+                }
+            } else {
+                echo "<script>
+                Swal.fire({
+                    title: '¡El cliente no puede ir vacío o llevar caracteres especiales!',
+                    text: '...',
+                    icon: 'error',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cerrar'
+                })</script>";
             }
         }
     }
@@ -183,6 +175,7 @@ class ControladorClientes
             }
         }
     }
+
     // LISTAR CLIENTES CON BUSCADOR
     public  function ctrListarClient()
     {
@@ -206,5 +199,5 @@ class ControladorClientes
     }
 
     //BUSCAR RUC SUNAT
-    
+
 }

@@ -6,9 +6,37 @@ use Controladores\ControladorProveedores;
 use Controladores\ControladorEmpresa;
 use Modelos\ModeloCompras;
 use Modelos\ModeloProductos;
+use Conexion;
 
 class ControladorCompras
 {
+    // En ControladorCompras.php
+    public static function ctrObtenerCompras($search = '', $perPage = 10, $page = 1)
+    {
+        $offset = ($page - 1) * $perPage;
+        // Conectar a la base de datos usando la clase Conexion si existe
+        if (class_exists('Conexion')) {
+            $pdo = Conexion::conectar();
+        } else {
+            throw new \Exception('Clase Conexion no encontrada. Asegure que el archivo de conexión está incluido.');
+        }
+
+        $where = "";
+        if (!empty($search)) {
+            $where = "WHERE t2.nombre LIKE '%$search%' OR t1.serie_correlativo LIKE '%$search%'";
+        }
+
+        $query = "SELECT t1.*, t2.nombre as proveedor_nombre, t2.ruc, t2.documento, t2.razon_social 
+              FROM compra t1 
+              INNER JOIN proveedores t2 ON t1.codproveedor=t2.id 
+              $where 
+              ORDER BY t1.id DESC 
+              LIMIT $offset, $perPage";
+
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
     public static function ctrMostrarCompras($item, $valor)
     {

@@ -33,8 +33,21 @@ class ModeloClientes
     // OBJETO MODELO CREAR CLIENTE
     public static function mdlCrearCliente($tabla, $datos)
     {
+        // Si fecha_nacimiento está vacía, '0000-00-00' o no es válida, usar NULL
+        $fecha_nacimiento = null;
+        if (!empty($datos['fecha_nacimiento']) && $datos['fecha_nacimiento'] != '0000-00-00') {
+            // Intentar convertir la fecha al formato YYYY-MM-DD
+            $fecha = $datos['fecha_nacimiento'];
+            // Si viene en formato DD/MM/YYYY
+            if (preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $fecha)) {
+                $parts = explode('/', $fecha);
+                $fecha_nacimiento = $parts[2] . '-' . $parts[1] . '-' . $parts[0];
+            } else {
+                $fecha_nacimiento = $fecha;
+            }
+        }
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, documento, ruc, razon_social, email, telefono,  direccion, ubigeo, fecha_nacimiento) VALUES (:nombre, :documento, :ruc, :razon_social, :email, :telefono, :direccion, :ubigeo, :fecha_nacimiento)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, documento, ruc, razon_social, email, telefono, direccion, ubigeo, fecha_nacimiento) VALUES (:nombre, :documento, :ruc, :razon_social, :email, :telefono, :direccion, :ubigeo, :fecha_nacimiento)");
 
         $stmt->bindParam(":nombre", $datos['nombre'], PDO::PARAM_STR);
         $stmt->bindParam(":documento", $datos['documento'], PDO::PARAM_STR);
@@ -44,21 +57,31 @@ class ModeloClientes
         $stmt->bindParam(":telefono", $datos['telefono'], PDO::PARAM_STR);
         $stmt->bindParam(":direccion", $datos['direccion'], PDO::PARAM_STR);
         $stmt->bindParam(":ubigeo", $datos['ubigeo'], PDO::PARAM_STR);
-        $stmt->bindParam(":fecha_nacimiento", $datos['fecha_nacimiento'], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_nacimiento", $fecha_nacimiento, $fecha_nacimiento === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-
             return "ok";
         } else {
-
             return "error";
         }
-        $stmt->close();
-        $stmt = null;
     }
+    
     // EDITAR CLIENTE
     public static function mdlEditarCliente($tabla, $datos)
     {
+        // Si fecha_nacimiento está vacía, '0000-00-00' o no es válida, usar NULL
+        $fecha_nacimiento = null;
+        if (!empty($datos['fecha_nacimiento']) && $datos['fecha_nacimiento'] != '0000-00-00') {
+            // Intentar convertir la fecha al formato YYYY-MM-DD
+            $fecha = $datos['fecha_nacimiento'];
+            // Si viene en formato DD/MM/YYYY
+            if (preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $fecha)) {
+                $parts = explode('/', $fecha);
+                $fecha_nacimiento = $parts[2] . '-' . $parts[1] . '-' . $parts[0];
+            } else {
+                $fecha_nacimiento = $fecha;
+            }
+        }
 
         $stmt = Conexion::conectar();
         $stmt = $stmt->prepare("UPDATE $tabla SET nombre = :nombre, documento = :documento, ruc = :ruc, razon_social = :razon_social, email = :email, telefono = :telefono, direccion = :direccion, fecha_nacimiento = :fecha_nacimiento WHERE id = :id");
@@ -71,18 +94,13 @@ class ModeloClientes
         $stmt->bindParam(":email", $datos['email'], PDO::PARAM_STR);
         $stmt->bindParam(":telefono", $datos['telefono'], PDO::PARAM_STR);
         $stmt->bindParam(":direccion", $datos['direccion'], PDO::PARAM_STR);
-        $stmt->bindParam(":fecha_nacimiento", $datos['fecha_nacimiento'], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_nacimiento", $fecha_nacimiento, $fecha_nacimiento === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-
             return "ok";
         } else {
-
             return "error";
         }
-
-        $stmt->close();
-        $stmt = null;
     }
 
     // ELIMINAR CLIENTE
@@ -112,7 +130,6 @@ class ModeloClientes
     public static function mdlBuscarRuc($numDoc, $tipoDoc)
     {
         // Tu token de apiperu.dev - REEMPLAZA CON TU TOKEN REAL
-        // $token = "TU_TOKEN_DE_APIPERU_DEV";
         $token = "60f198fc53c48b7f8da7762d8ef4493b1029ddcf23abf38d35df0e3bc942a9b7";
 
         // Limpiar el número de documento
@@ -163,7 +180,6 @@ class ModeloClientes
         }
 
         return 'error';
-        return ModeloProveedores::mdlBuscarRuc($numDoc, $tipoDoc);
     }
 
     // CONSULTAR DNI CON APIPERU.DEV

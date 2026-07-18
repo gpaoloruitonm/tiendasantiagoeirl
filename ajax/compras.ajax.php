@@ -1,14 +1,96 @@
 <?php
 session_start();
+
 require_once "../vendor/autoload.php";
+require_once __DIR__ . "../Conect/Conexion.php";
 
 use Controladores\ControladorProveedores;
 use Controladores\ControladorProductos;
 use Controladores\ControladorCompras;
 use Controladores\ControladorSunat;
+use Conect\Conexion;
 
 class AjaxCompras
 {
+
+    public function ajaxCargarCompras()
+    {
+        $search = $_POST['search'] ?? '';
+        $perPage = (int)($_POST['selectnum'] ?? 10);
+        $page = (int)($_POST['page'] ?? 1);
+        $offset = ($page - 1) * $perPage;
+
+        // Conectar a la base de datos usando la clase Conexion si existe
+        if (class_exists('Conexion')) {
+            $pdo = Conexion::conectar();
+        } else {
+            throw new \Exception('Clase Conexion no encontrada. Asegure que el archivo de conexión está incluido.');
+        }
+
+        // Construir WHERE para búsqueda
+        $where = "";
+        if (!empty($search)) {
+            $where = "WHERE t2.nombre LIKE '%$search%' OR t1.serie_correlativo LIKE '%$search%' OR t1.serie LIKE '%$search%' OR t1.correlativo LIKE '%$search%'";
+        }
+
+        // Contar total de registros
+        $queryCount = "SELECT COUNT(*) AS numrows FROM compra t1 INNER JOIN proveedores t2 ON t1.codproveedor=t2.id $where";
+        $totalRegistros = $pdo->query($queryCount);
+        $totalRegistros = $totalRegistros ? $totalRegistros->fetch()['numrows'] : 0;
+        $totalPages = ($perPage > 0) ? ceil($totalRegistros / $perPage) : 0;
+
+        // Consulta principal
+        $query = "SELECT t1.*, t2.nombre as proveedor_nombre, t2.ruc, t2.documento, t2.razon_social 
+                  FROM compra t1 
+                  INNER JOIN proveedores t2 ON t1.codproveedor=t2.id 
+                  $where 
+                  ORDER BY t1.id DESC 
+                  LIMIT $offset, $perPage";
+
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $registros = $stmt->fetchAll();
+
+        if ($totalRegistros > 0) {
+            foreach ($registros as $key => $value) {
+                $verproveedor = ($value['tipodoc'] == 6)
+                    ? ($value['razon_social'] . ' - ' . $value['ruc'])
+                    : ($value['proveedor_nombre'] . ' - ' . $value['documento']);
+
+                $serieCorrelativo = $value['serie_correlativo'];
+
+                echo "<tr>
+                    <td>" . ++$key . "</td>
+                    <td>" . date_format(date_create($value['fecha_emision']), 'd/m/Y') . "</td>
+                    <td>" . htmlspecialchars($serieCorrelativo) . "</td>
+                    <td>" . htmlspecialchars($verproveedor) . "</td>
+                    <td>" . number_format($value['igv'], 2) . "</td>
+                    <td>" . number_format($value['subtotal'], 2) . "</td>
+                    <td>" . number_format($value['total'], 2) . "</td>
+                    <td style='text-align:center;'>
+                        <button class='btn btn-print-compra' idCompra='{$value['id']}' data-toggle='modal' data-target='#modalImprimir'>+</button>
+                    </td>
+                    <td style='text-align:center;'>
+                        <div class='dropdown'>
+                            <button class='btn btn-danger btn-xs dropdown-toggle' type='button' data-toggle='dropdown' aria-expanded='true'>
+                                <i class='fa fa-cog fa-lg'></i>
+                                <span class='caret'></span>
+                            </button>
+                            <ul class='dropdown-menu dropdown-menu-right' role='menu' style='font-size:17px'>";
+
+                if (($_SESSION['perfil'] ?? '') == 'Administrador') {
+                    echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='#' idCompra='{$value['id']}' class='btn-anular-compra'><i class='fas fa-ban' style='color:red;'></i> Anular compra</a></li>";
+                }
+                echo "        <li role='presentation'><a role='menuitem' tabindex='-1' href='nueva-compra'><i class='fa fa-plus'></i> Nueva compra</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='9' style='text-align:center;'>No hay compras registradas</td></tr>";
+        }
+    }
 
     public static function ajaxLlenarCarrito()
     {
@@ -217,4 +299,9 @@ if (isset($_POST['buscarProducto'])) {
 if (isset($_POST['idProducto'])) {
     $objProducto = new AjaxCompras();
     $objProducto->ajaxMostrarProductos();
+}
+// CARGAR COMPRAS
+if (isset($_POST['cargarCompras'])) {
+    $objCompras = new AjaxCompras();
+    $objCompras->ajaxCargarCompras();
 }

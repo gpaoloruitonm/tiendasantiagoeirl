@@ -3,18 +3,18 @@
 use Controladores\ControladorCompras;
 ?>
 <div class="content-wrapper panel-medio-principal">
-    <div style="padding:5px"></div>
     <?php
     if ($_SESSION['perfil'] == 'Vendedor') {
         echo '
-      <section class="container-fluid panel-medio">
-      <div class="box alert-dangers text-center">
-     <div><h3> Área restringida, solo el administrador puede tener acceso</h3></div>
-    <div class="img-restringido"></div>
-     </div>
-     </div>';
+        <section class="container-fluid panel-medio">
+        <div class="box alert-dangers text-center">
+        <div><h3> Área restringida, solo el administrador puede tener acceso</h3></div>
+        <div class="img-restringido"></div>
+        </div>
+        </div>';
     } else {
     ?>
+        <div style="padding:5px"></div>
         <section class="container-fluid panel-medio">
             <div class="box rounded">
                 <div class="box-header">
@@ -28,43 +28,9 @@ use Controladores\ControladorCompras;
 
                 <div class="box-body table-user">
                     <div class="contenedor-busqueda">
-                        <!-- row fechas -->
-                        <div class="row fechas-reportes">
-                            <div class="col-md-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
-                                    <input type="text" class="fechareportes" id="fechaInicial" name="fechaInicial" placeholder="Fecha Inicial" style="width:100%" value="<?php echo date("d/m/Y"); ?>" onchange="loadReportesCompras(1)">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
-                                    <input type="text" class="fechareportes" id="fechaFinal" name="fechaFinal" placeholder="Fecha Final" style="width:100%" value="<?php echo date("d/m/Y"); ?>" onchange="loadReportesCompras(1)">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="contenedor-radios">
-                            <label for="factura" class="btn-radios"><i class="fa fa-file-invoice"></i> Facturas</label>
-                            <input type="radio" id="factura" class="comp" name="tipocomp" value="01" checked>
-                            <label for="boleta" class="btn-radios"><i class="fa fa-file-invoice"></i> Boletas</label>
-                            <input type="radio" id="boleta" class="comp" name="tipocomp" value="03">
-                            <label for="notac" class="btn-radios"><i class="fa fa-file-invoice"></i> Notas C</label>
-                            <input type="radio" id="notac" class="comp" name="tipocomp" value="07">
-                            <label for="notad" class="btn-radios"><i class="fa fa-file-invoice"></i> Notas D</label>
-                            <input type="radio" id="notad" class="comp" name="tipocomp" value="08">
-                            <label for="cfb" class="btn-radios"><i class="fa fa-file-invoice"></i> Facturas y Boletas</label>
-                            <input type="radio" id="cfb" class="comp" name="tipocomp" value="00">
-                        </div>
-
-                        <div class="form-group contenedor-btn-reportes">
-                            <button class="btn btn-primary pull-right btn-show-envio-reporte"><i class="far fa-paper-plane fa-lg"></i> ENVIAR</button>
-                            <div class="box-tools pull-right reporte-compras-excel" width="100%"></div>
-                            <button class="btn btn-default pull-right btn-reporte-pdf-compras" data-toggle="modal" data-target="#modalImprimir"><i class="far fa-file-pdf fa-lg" style="color:red;"></i> REPORTE PDF</button>
-                        </div>
 
                         <div class="input-group-search">
-                            <select class="selectpicker show-tick" data-style="btn-select" data-width="70px" id="selectnum" name="selectnum" onchange="loadReportesCompras(1)">
+                            <select class="selectpicker show-tick" data-style="btn-select" data-width="70px" id="selectnum" name="selectnum" onchange="loadCompras(1)">
                                 <option value="5">5</option>
                                 <option value="10" selected>10</option>
                                 <option value="20">20</option>
@@ -72,7 +38,7 @@ use Controladores\ControladorCompras;
                                 <option value="100">100</option>
                             </select>
                             <div class="input-search">
-                                <input type="search" class="search" id="searchReportes" name="searchReportes" placeholder="Buscar" onkeyup="loadReportesCompras(1)">
+                                <input type="search" class="search" id="searchCompras" name="searchCompras" placeholder="Buscar" onkeyup="loadCompras(1)">
                                 <span class="input-group-addo"><i class="fa fa-search"></i></span>
                             </div>
                         </div>
@@ -94,6 +60,7 @@ use Controladores\ControladorCompras;
                                 </tr>
                             </thead>
                             <tbody class="body-reporte-compras">
+                                <!-- Los datos se cargan vía AJAX -->
                             </tbody>
                         </table>
                     </div>
@@ -121,6 +88,36 @@ use Controladores\ControladorCompras;
 
 <script>
     $(document).ready(function() {
-        loadReportesCompras(1);
+        // Cargar compras al iniciar la página
+        loadCompras(1);
     });
+
+    function loadCompras(page) {
+        let search = $("#searchCompras").val();
+        let selectnum = $("#selectnum").val();
+
+        let parametros = {
+            "action": "ajax",
+            "page": page,
+            "search": search,
+            "selectnum": selectnum,
+            "cargarCompras": true
+        };
+
+        $.ajax({
+            url: 'ajax/compras.ajax.php',
+            method: 'POST',
+            data: parametros,
+            beforeSend: function() {
+                $(".body-reporte-compras").html('<tr><td colspan="9" style="text-align:center;"><img src="vistas/img/reload1.svg" width="40px"> Cargando...</td></tr>');
+            },
+            success: function(data) {
+                $(".body-reporte-compras").html(data);
+            },
+            error: function(xhr, status, error) {
+                console.log("Error al cargar compras:", error);
+                $(".body-reporte-compras").html('<tr><td colspan="9" style="text-align:center; color:red;">Error al cargar los datos</td></tr>');
+            }
+        });
+    }
 </script>
